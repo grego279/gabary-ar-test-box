@@ -1,0 +1,21 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gabarit Bagage AR</title>
+<style>
+:root{--bg:#e9efee;--fg:#14272c;--muted:#4d6168;--accent:#0a6470;--on:#fff;--line:#bccbc9}
+@media(prefers-color-scheme:dark){:root{--bg:#10191c;--fg:#e6efee;--muted:#a2b4b6;--accent:#5cc3cf;--on:#082226;--line:#34474c;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
+main{max-width:520px;margin:0 auto;padding:24px 16px 48px;display:grid;gap:16px}h1{font-size:1.8rem;line-height:1.1;margin:0}p{margin:0}
+.c{border-top:3px solid var(--accent);padding-top:12px;display:grid;gap:10px}h2{font-size:1.15rem;margin:0}
+a.b{display:block;text-align:center;padding:13px 16px;border-radius:6px;background:var(--accent);color:var(--on);font-weight:600;text-decoration:none}
+.m{color:var(--muted);font-size:.93rem}ol{margin:0;padding-left:20px}</style></head><body><main>
+<h1>Gabarit Bagage AR</h1><p class="m">Prototype de test. Résultat estimatif, le contrôle à la gare reste décisif.</p>
+<ol><li>Choisissez votre bagage et ouvrez la boîte en réalité augmentée.</li><li>Scannez le sol jusqu'à ce que la boîte se pose.</li><li>Placez votre bagage dans la boîte et tournez autour : rien ne doit dépasser.</li></ol>
+<div class="c"><h2>Bagage cabine, 55 × 35 × 25 cm</h2><a class="b" data-n="gabarit-cabine-v4" href="#">Ouvrir la boîte</a></div>
+<div class="c"><h2>Bagage à main, 40 × 30 × 15 cm</h2><a class="b" data-n="gabarit-main-v4" href="#">Ouvrir la boîte</a></div>
+<p class="m" id="n" hidden>Ouvrez cette page sur un iPhone ou un téléphone Android compatible.</p>
+</main><script>
+const ua=navigator.userAgent,ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),android=/Android/.test(ua);
+document.querySelectorAll('a.b').forEach(a=>{const f=new URL(a.dataset.n,location.href).href;
+if(ios){a.rel='ar';a.href=f+'.usdz#allowsContentScaling=0';a.innerHTML='<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="1" height="1">Ouvrir la boîte'}
+else if(android){const q='file='+encodeURIComponent(f+'.glb')+'&mode=ar_only&resizable=false';a.href='intent://arvr.google.com/scene-viewer/1.0?'+q+'#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url='+encodeURIComponent(location.href)+';end;'}
+else{document.getElementById('n').hidden=false;a.removeAttribute('href')}});
+</script></body></html>
